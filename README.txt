@@ -23,3 +23,9 @@ example code:
           OP_PRINT,      REG_R0,
           OP_HALT
   };
+
+build only with C compiler:
+  gcc -Ofast main.c felonvm.c -o felonvm
+
+build only with cmake (before it create dist folder):
+  cmake --build <folder> --target felonvm -j 4
