@@ -11,11 +11,13 @@
 
 typedef enum {
     OP_HALT = 0x00,
-    OP_LOAD_CONST, // LOAD_CONST reg, value
-    OP_ADD,        // ADD reg_dest, reg_src
-    OP_SUB,        // SUB reg_dest, reg_src
-    OP_DUMP,       // DUMP reg
-    OP_PRINT,      // PRINT reg
+    OP_LOAD_CONST,  // LOAD_CONST reg, value
+    OP_ADD,         // ADD reg_dest, reg_src = a + b
+    OP_SUB,         // SUB reg_dest, reg_src = a - b
+    OP_MULV,        // SUB reg_dest, reg_src = a * b
+    OP_DEVD,        // SUB reg_dest, reg_src = a / b
+    OP_DUMP,        // DUMP reg
+    OP_PRINT,       // PRINT reg
 } Opcode;
 
 typedef enum {
@@ -35,8 +37,9 @@ typedef struct {
     bool running;
 } FelonVM;
 
- void vm_init(FelonVM *vm, const uint8_t *program, size_t program_size);
- uint8_t fetch_byte(FelonVM *vm);
- void run(FelonVM *vm);
+void vm_init(FelonVM *vm, const uint8_t *program, size_t program_size);
+bool check_is_register(FelonVM *vm, uint8_t reg_dest, uint8_t reg_src);
+uint8_t fetch_byte(FelonVM *vm);
+void run(FelonVM *vm);
 
 #endif //FELONVM_H
