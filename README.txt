@@ -6,7 +6,7 @@ features:
  - light api
 
 syntax:
-  operation-to-from
+  operation-dest-src
 example:
   move      R0 10
 
