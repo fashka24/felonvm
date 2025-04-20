@@ -1,0 +1,3 @@
+alloc   5 2
+memset  2 5 "Hello world!\n\0"
+printch 2
