@@ -12,10 +12,10 @@
 typedef enum {
     OP_HALT = 0x00,
     OP_LOAD_CONST,  // LOAD_CONST reg, value
-    OP_ADD,         // ADD reg_dest, reg_src = a + b
-    OP_SUB,         // SUB reg_dest, reg_src = a - b
-    OP_MULV,        // SUB reg_dest, reg_src = a * b
-    OP_DEVD,        // SUB reg_dest, reg_src = a / b
+    OP_ADD,         // ADD reg_dest, reg_src  = a + b
+    OP_SUB,         // SUB reg_dest, reg_src  = a - b
+    OP_MULV,        // MULV reg_dest, reg_src = a * b
+    OP_DEVD,        // DEVD reg_dest, reg_src = a / b
     OP_DUMP,        // DUMP reg
     OP_PRINT,       // PRINT reg
     OP_PRINT_MEM,   // PRINT memory block
@@ -29,7 +29,7 @@ typedef enum {
     REG_R1,
     REG_R2,
     REG_R3,
-} RegistersName;
+} RegisterNames;
 
 #define MEMORY_SIZE 1024
 #define NUM_REGS 4
