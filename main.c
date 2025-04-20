@@ -3,7 +3,12 @@
 
 int main(void) {
     const uint8_t program[] = {
-        OP_ALLOC, 10, 1,
+    //  allocate | size | address
+        OP_ALLOC,    5,      2,
+    //  memset    | address | length |         data
+        OP_MEMSET,      2,      5,    'f', 'e', 'l', 'o', 'n',
+    //  print as char  |  address
+        OP_PRINTCH_MEM,      2,
         OP_HALT
     };
 

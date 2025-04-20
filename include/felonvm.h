@@ -18,7 +18,10 @@ typedef enum {
     OP_DEVD,        // SUB reg_dest, reg_src = a / b
     OP_DUMP,        // DUMP reg
     OP_PRINT,       // PRINT reg
-    OP_ALLOC,       // ALLOCATE memory
+    OP_PRINT_MEM,   // PRINT memory block
+    OP_PRINTCH_MEM, // PRINT memory block as char
+    OP_ALLOC,       // ALLOCATE memory block
+    OP_MEMSET,      // MEMSET
 } Opcode;
 
 typedef enum {

@@ -115,6 +115,65 @@ void run(FelonVM *vm) {
                 vm->memory_index++;
                 break;
             }
+            case OP_MEMSET: {
+                uint8_t address = fetch_byte(vm);
+                uint8_t length_to_set = fetch_byte(vm);
+                if (vm->memory_index >= MEMORY_SIZE) {
+                    fprintf(stderr, "Error: memory full");
+                    exit(EXIT_FAILURE);
+                }
+                for (int i = 0; i < MEMORY_SIZE; ++i) {
+                    if (vm->memory.clasters[i].address == address) {
+                        for (int j = 0; j < length_to_set; ++j) {
+                            uint8_t to_set_ = fetch_byte(vm);
+                            vm->memory.clasters[i].data[j] = to_set_;
+                        }
+                    }
+                }
+                break;
+            }
+            case OP_PRINT_MEM: {
+                uint8_t address = fetch_byte(vm);
+                int* _temp_data;
+                int  _temp_length = 0;
+                bool _found = false;
+                for (int i = 0; i < MEMORY_SIZE; ++i) {
+                    if (vm->memory.clasters[i].address == address) {
+                        _temp_data   = vm->memory.clasters[i].data;
+                        _temp_length = vm->memory.clasters[i].length;
+                        _found = true;
+                        break;
+                    }
+                }
+                if (!_found) {
+                    fprintf(stderr, "Error: memory by address %d not found", address);
+                }
+                for (int i = 0; i < _temp_length; ++i) {
+                    printf("%d", _temp_data[i]);
+                }
+                break;
+            }
+            case OP_PRINTCH_MEM: {
+                uint8_t address = fetch_byte(vm);
+                int* _temp_data;
+                int  _temp_length = 0;
+                bool _found = false;
+                for (int i = 0; i < MEMORY_SIZE; ++i) {
+                    if (vm->memory.clasters[i].address == address) {
+                        _temp_data   = vm->memory.clasters[i].data;
+                        _temp_length = vm->memory.clasters[i].length;
+                        _found = true;
+                        break;
+                    }
+                }
+                if (!_found) {
+                    fprintf(stderr, "Error: memory by address %d not found", address);
+                }
+                for (int i = 0; i < _temp_length; ++i) {
+                    printf("%c", _temp_data[i]);
+                }
+                break;
+            }
             default:
                 fprintf(stderr, "Error: Unknown opcode 0x%02X\n", opcode);
                 vm->running = false;

@@ -16,11 +16,12 @@ registers (current num = 4):
 
 example code:
   const uint8_t program[] = {
-          OP_LOAD_CONST, REG_R0, 10,
-          OP_LOAD_CONST, REG_R1, 20,
-          OP_ADD,        REG_R0, REG_R1,
-          OP_DUMP,       REG_R0,
-          OP_PRINT,      REG_R0,
+      //  allocate | size | address
+          OP_ALLOC,    5,      2,
+      //  memset    | address | length |         data
+          OP_MEMSET,      2,      5,    'f', 'e', 'l', 'o', 'n',
+      //  print as char  |  address
+          OP_PRINTCH_MEM,      2,
           OP_HALT
   };
 
@@ -29,3 +30,10 @@ build only with C compiler:
 
 build only with cmake (before it create dist folder):
   cmake --build <folder> --target felonvm -j 4
+
+about memory:
+memory consists (according to the 1024 standard) of blocks,
+where they already consist of:
+  int* data
+  length (size) of the block
+  address (identifier)
