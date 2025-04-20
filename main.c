@@ -17,5 +17,6 @@ int main(void) {
 
     run(&vm);
 
+    free_memory(&vm);
     return 0;
 }
