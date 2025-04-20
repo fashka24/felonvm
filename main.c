@@ -3,11 +3,7 @@
 
 int main(void) {
     const uint8_t program[] = {
-        OP_LOAD_CONST, REG_R0, 10,
-        OP_LOAD_CONST, REG_R1, 20,
-        OP_ADD,        REG_R0, REG_R1,
-        OP_DUMP,       REG_R0,
-        OP_PRINT,      REG_R0,
+        OP_ALLOC, 10, 1,
         OP_HALT
     };
 
